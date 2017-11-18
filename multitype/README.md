@@ -18,22 +18,22 @@ Define some multitypes which you would like to return from your functions:
 
 ```.c
 multitypedefs(
-  multitypedef(int,float,double),
-  multitypedef(int,int)
+  multitypedef (int,float,double),
+  multitypedef (int,int)
 );
 ```
 
 Create some functions which return some values:
 
 ```.c
-multitype(int,float,double) func1() {
+multitype (int,float,double) func1() {
   int    a = 5;
   float  b = -1.3;
   double c = 3.75;
   return (a,b,c);
 }
 
-multitype(int,int) func2() {
+multitype (int,int) func2() {
   return ((int)1,(int)2);
 }
 
@@ -59,11 +59,11 @@ int main(const int argc, const char *argv[]) {
   double d;
 
 
-  let(i,f,d) = func1();
+  let (i,f,d) = func1();
   printf("(i, f, d) ==> (%d, %f, %g)", i, f, d);
 
 
-  let(i,j) = func2();
+  let (i,j) = func2();
   printf("(i, j) ==> (%d, %d)", i, j);
 
 

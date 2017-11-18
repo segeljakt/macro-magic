@@ -18,25 +18,25 @@ typedef struct x_s {
 
 /* Define all multitypes which should be used */
 multitypedefs(
-  multitypedef(int,float,double,int*),
-  multitypedef(int,float),
-  multitypedef(int,x_t)
+  multitypedef (int,float,double,int*),
+  multitypedef (int,float),
+  multitypedef (int,x_t)
 );
 
 /* Return an int and a float variable */
-multitype(int,float) func0() {
+multitype (int,float) func0() {
   int   a = 3;
   float b = 9.5;
   return (a,b);
 }
 
 /* Return them as literals instead */
-multitype(int,float) func1() {
+multitype (int,float) func1() {
   return ((int)3,(float)9.5);
 }
 
 /* Let's try something more advanced */
-multitype(int,float,double,int*) func2() {
+multitype (int,float,double,int*) func2() {
   int    a = 25;
   float  b = -1.3;
   double c = 3.75;
@@ -77,27 +77,27 @@ int main(const int argc, const char *argv[]) {
   float *q = malloc(sizeof(float));
   x_t    x;
 
-  let(i,f) = func0();
+  let (i,f) = func0();
   printf("func0:  i: %d,  f: %g\n", i, f);
   // Prints "i: 3, f: 9.5"
 
-  let(*p,*q) = func0();
+  let (*p,*q) = func0();
   printf("func0: *p: %d, *q: %g\n", *p, *q);
   // Prints "*p: 3, *q: 9.5"
 
-  let(i,f) = func1();
+  let (i,f) = func1();
   printf("func1:  i: %d,  f: %g\n", i, f);
   // Prints "i: 3, f: 9.5"
 
-  let(i,f,d,p) = func2();
+  let (i,f,d,p) = func2();
   printf("func2:  i: %d, f: %g,  d: %g, *p: %d\n", i, f, d, *p);
   // Prints "i: 25, f: -1.3 d: 3.75 *p: -32"
 
-  let(i,x) = func3();
+  let (i,x) = func3();
   printf("func3:  i: %d,  x: {%d,%d}\n", i, x.a, x.b);
   // Prints "i: 7, x.a: 3 x.b: 5"
 
-  let(i,x) = func4();
+  let (i,x) = func4();
   printf("func4:  i: %d,  x: {%d,%d}\n", i, x.a, x.b);
   // Prints "i: 7, x.a: 3 x.b: 5"
 
