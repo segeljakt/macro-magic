@@ -11,26 +11,6 @@
 
 /* ============================= HELPER MACROS ============================= */
 
-/* Expand list of types of multitype */
-#define MT3(_0,_1,_2,_3) _0 v0; _1 v1; _2 v2; _3 v3;
-#define MT2(_0,_1,_2)    _0 v0; _1 v1; _2 v2;
-#define MT1(_0,_1)       _0 v0; _1 v1;
-#define MT0(_0)          _0 v0;
-
-#define MT_(_0,_1,_2,_3,MT_MACRO,...) MT_MACRO
-
-#define MT(...) MT_(__VA_ARGS__,MT3,MT2,MT1,MT0)(__VA_ARGS__)
-
-/* Expand list of multitypes to include variable name */
-#define MTV3(_0,_1,_2,_3) _0 mtv0; _1 mtv1; _2 mtv2; _3 mtv3;
-#define MTV2(_0,_1,_2)    _0 mtv0; _1 mtv1; _2 mtv2;
-#define MTV1(_0,_1)       _0 mtv0; _1 mtv1;
-#define MTV0(_0)          _0 mtv0;
-
-#define MTV_(_0,_1,_2,_3,MTV_MACRO,...) MTV_MACRO
-
-#define MTV(...) MTV_(__VA_ARGS__,MTV3,MTV2,MTV1,MTV0)(__VA_ARGS__)
-
 /* __typeof__(V) abbreviation */
 
 #define TOF(V) __typeof__(V)

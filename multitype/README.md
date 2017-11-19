@@ -1,9 +1,30 @@
 # Multitypes
 
-`multitype.h` is a collection of macros which make it possible to return multiple values from a function. The returned values can be assigned to multiple variables in one line of code. The macros rely on tricks, but it has been successfully tested with:
+`multitype.h` is a collection of macros which make it possible to return multiple values from a function. The returned values can be assigned to multiple variables in one line of code. As a brief example:
+
+```.c
+multitype (int,float) func() {
+  int a = 3;
+  float b = 9.2;
+  return (a,b);
+}
+
+int main(int argc, char *argv[]) {
+  int x;
+  float y;
+
+  let (x,y) = func(); // Assigns x = 3 and y = 9.2
+
+  return 0;
+}
+```
+
+The macros rely on tricks, but it has been successfully tested with:
 
 Compilers: `gcc` and `clang`
+
 Standards: `-std=c11` and `-std=c99`
+
 Optimizations: `-O0`, `-O1`, `-O2`, `-O3`, `-Ofast`
 
 There are two versions, `heap-based/multitype.h` and `stack-based/multitype.h`. The former returns arguments by allocating them on the heap while the latter puts them on the stack. The stack-based version is less user friendly since it requires all multitypes to be pre-defined at the top of the file.
