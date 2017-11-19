@@ -3,7 +3,7 @@
 *     Created By          :     Klas Segeljakt <klasseg@kth.se>               *
 *     Creation Date       :     [2017-11-18 18:18]                            *
 *     Last Modified       :     [2017-11-18 18:52]                            *
-*     Description         :                                                   *
+*     Description         :     Stack-based multitype.h                       *
 ******************************************************************************/
 #ifndef MULTITYPE_H
 #define MULTITYPE_H
@@ -59,11 +59,12 @@
 
 /* Return multitype if multiple arguments, return normally if only one */
 
-#define MTR1(...) \
-  struct {                                                                    \
-    TO(__VA_ARGS__)                                                           \
-  } mtr = {__VA_ARGS__};                                                      \
-  return *(multitype_t*)&mtr
+#define MTR1(...) {                                                           \
+    struct {                                                                  \
+      TO(__VA_ARGS__)                                                         \
+    } mtr = {__VA_ARGS__};                                                    \
+    return *(multitype_t*)&mtr;                                               \
+  }
 
 #define MTR0(_0) return(_0)
 

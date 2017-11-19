@@ -6,22 +6,8 @@
 *     Description         :                                                   *
 ******************************************************************************/
 #include <stdio.h>
-#include <stddef.h>
 #include <stdlib.h>
 #include "multitype.h"
-
-/* Some example struct */
-typedef struct x_s {
-  int a;
-  int b;
-} x_t;
-
-/* Define all multitypes which should be used */
-multitypedefs(
-  multitypedef (int,float,double,int*),
-  multitypedef (int,float),
-  multitypedef (int,x_t)
-);
 
 /* Return an int and a float variable */
 multitype (int,float) func0() {
@@ -46,14 +32,19 @@ multitype (int,float,double,int*) func2() {
 }
 
 /* Structs work too */
+typedef struct x_s {
+  int a;
+  int b;
+} x_t;
+
 multitype(int,x_t) func3() {
   x_t x = {3,5};
   return ((int)7,x);
 }
 
-/* If we are lazy, we can specify it to return multitype_t and  *
- * it will be able to return any of the user defined multitypes */
-multitype_t func4() {
+/* If we are lazy, we can specify it to return      *
+ * multitype and it will be able to return anything */
+multitype func4() {
   x_t x = {3,5};
   return ((int)7,x);
 }
