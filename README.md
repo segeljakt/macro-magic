@@ -4,7 +4,7 @@ This is a collection of interesting and useful macros for the C pre-processor. C
 
 # MultiType
 
-```
+```.c
 #include "multitype.h"
 
 multitype (int,float,double) fun() {
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 
 # Hashmap
 
-```
+```.c
 #include "hmap.h"
 
 int main(const int argc, const char *argv[]) {
