@@ -154,7 +154,9 @@ void *hmap_pop(hmap_t *hmap, char *key) {
 }
 /*---------------------------------------------------------------------------*/
 void init_global_hmap(size_t size) {
-  global_hmap = new_hmap(size);
+  if(global_hmap == NULL) {
+    new_hmap(size);
+  }
 }
 /*---------------------------------------------------------------------------*/
 static void unlink_entry(entry_t *entry) { // Unlink entry from linked list
