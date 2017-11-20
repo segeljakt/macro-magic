@@ -40,11 +40,11 @@ int main(int argc, char *argv[]) {
   double c = 9;
   long   d = 2;
   
-  add (a,b,c)   += 3; // Add 3 to x, y and z
-  add (a,b,c,d) -= 9; // Subtract 9 from x, y, z and u
-  mul (a,b,c)   *= 2; // Multiply x, y and z with 2
-  mul (a,b)     /= 8; // Divide x and y with 8
-  map (a,b,c)    = square; // Map x, y and z to x^2, y^2 and z^2 respectively
+  add (a,b,c)   += 3; // Add 3 to a, b and c
+  add (a,b,c,d) -= 9; // Subtract 9 from a, b, c and d
+  mul (a,b,c)   *= 2; // Multiply a, b and c with d
+  mul (a,b)     /= 8; // Divide a and b with 8
+  map (a,b,c)    = square; // Map a, b and c to a^2, b^2 and c^2 respectively
                            // Any double(*map_f)(double) function is allowed
 
   map (a,b,c) to square; // This syntax is also valid
@@ -63,13 +63,14 @@ int main(const int argc, const char *argv[]) {
   hmap_t *hmap = new_hmap(100); // Local hashmap
   init_global_hmap(100);        // Global hashmap
 
-  int x = 35;                           // Define a variable
+  char *val = "hello";
+  char *key = "world";
 
-  put(hmap, "hello") = &x;              // Put it in the local hashmap
-  int *y = get(hmap, "hello");          // Retrieve it from the local hashmap
+  put(hmap, key) = val; // Put it in the local hashmap
+  val = get(hmap, key); // Retrieve it from the local hashmap
 
-  put("hello") = &x;                    // Put it in the global hashmap
-  int *y = get("hello");                // Retrieve it from the global hashmap
+  put(key) = val;       // Put it in the global hashmap
+  val = get(key);       // Retrieve it from the global hashmap
 
   return 0;
 }
