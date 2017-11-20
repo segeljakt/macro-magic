@@ -2,12 +2,14 @@
 *     File Name           :     multitype.h                                   *
 *     Created By          :     Klas Segeljakt <klasseg@kth.se>               *
 *     Creation Date       :     [2017-11-18 18:18]                            *
-*     Last Modified       :     [2017-11-18 18:52]                            *
+*     Last Modified       :     [2017-11-20 11:36]                            *
 *     Description         :     Heap-based multitype.h                        *
 ******************************************************************************/
 #ifndef MULTITYPE_H
 #define MULTITYPE_H
 /*****************************************************************************/
+
+#include <stdlib.h>
 
 /* ============================= HELPER MACROS ============================= */
 
@@ -81,4 +83,3 @@ typedef void* multitype;
 
 /*****************************************************************************/
 #endif /* MULTITYPE_H */
-
