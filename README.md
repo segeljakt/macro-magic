@@ -1,4 +1,4 @@
-# MacroMagic - Magical C Macros
+# MacroMagic - Cool C Macros
 
 This is a collection of interesting and useful macros for the C pre-processor. Currently, the following macros are available:
 
@@ -60,23 +60,21 @@ int main(int argc, char *argv[]) {
 
 int main(const int argc, const char *argv[]) {
 
-
-  /* Local version */
-  hmap_t *hmap = new_hmap(100);
+  hmap_t *hmap = new_hmap(100); // Local hashmap
+  init_global_hmap(100);        // Global hashmap
 
   int x = 35;                           // Define a variable
 
-  put(hmap, "hello") = &x;              // Put it in a hashmap
-  int *y = get(hmap, "hello");          // Retrieve it from the hashmap
+  put(hmap, "hello") = &x;              // Put it in the local hashmap
+  int *y = get(hmap, "hello");          // Retrieve it from the local hashmap
 
-
-  /* Global version */
-  init_global_hmap(100);
-
-  put("hello") = &x;                    // Put it in a global hashmap
+  put("hello") = &x;                    // Put it in the global hashmap
   int *y = get("hello");                // Retrieve it from the global hashmap
-
 
   return 0;
 }
 ```
+
+# License
+
+MIT

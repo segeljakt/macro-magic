@@ -132,9 +132,3 @@ i ==> 3
 That's is all!
 
 You can also return and assign structs and pointers as parameters. For more examples, see `heap-based/examples.c` and `stack-based/examples.c`.
-
-
-
-# LICENSE
-
-MIT
