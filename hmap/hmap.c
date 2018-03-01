@@ -2,7 +2,7 @@
 *     File Name           :     src/hmap/hmap.c                               *
 *     Created By          :     Klas Segeljakt                                *
 *     Creation Date       :     [2016-06-30 21:58]                            *
-*     Last Modified       :     [2017-06-21 22:12]                            *
+*     Last Modified       :     [2017-11-24 13:23]                            *
 *     Description         :     Hashmap implementation.                       *
 ******************************************************************************/
 #include "./hmap.h"
@@ -30,7 +30,7 @@ struct entry_s {
 static entry_t *new_entry(char *key, void *val);
 static void free_entry(entry_t *entry);
 static void unlink_entry(entry_t *entry);
-static int hash(char *key);
+static int strhash(char *key);
 /*****************************************************************************/
 hmap_t *global_hmap = NULL;
 /*****************************************************************************/
@@ -58,7 +58,7 @@ void free_hmap(hmap_t *hmap, free_val_f free_val) {
 }
 /*---------------------------------------------------------------------------*/
 static entry_t *new_entry(char *key, void *val) {
-  entry_t *entry = malloc(sizeof(entry_t));
+  entry_t *entry = calloc(1,sizeof(entry_t));
   entry->key = strdup(key);
   entry->val = val;
   return entry;
@@ -74,7 +74,7 @@ void *hmap_put(hmap_t *hmap, char *key, void *val) {
     fprintf(stderr, "[ERROR]: Value put in hmap was NULL (key was %s)\n", key);
     abort();
   }
-  int id = hash(key) % hmap->size; // Get hash value
+  int id = strhash(key) % hmap->size; // Get hash value
   /* Find where entry should be put in bucket */
   entry_t **next = &hmap->bucket[id];
   int cmp_val = -1;
@@ -100,7 +100,7 @@ void *hmap_put(hmap_t *hmap, char *key, void *val) {
 }
 /*---------------------------------------------------------------------------*/
 void *hmap_get(hmap_t *hmap, char *key) {
-  int id = hash(key) % hmap->size;
+  int id = strhash(key) % hmap->size;
   entry_t *entry = hmap->bucket[id];
   /* Find entry in bucket */
   int cmp_val = -1;
@@ -116,7 +116,7 @@ void *hmap_get(hmap_t *hmap, char *key) {
 }
 /*---------------------------------------------------------------------------*/
 void *hmap_getp(hmap_t *hmap, char *key) {
-  int id = hash(key) % hmap->size;
+  int id = strhash(key) % hmap->size;
   entry_t *entry = hmap->bucket[id];
   /* Find entry in bucket */
   int cmp_val = -1;
@@ -132,7 +132,7 @@ void *hmap_getp(hmap_t *hmap, char *key) {
 }
 /*---------------------------------------------------------------------------*/
 void *hmap_pop(hmap_t *hmap, char *key) {
-  int id = hash(key) % hmap->size;
+  int id = strhash(key) % hmap->size;
   entry_t **entry = &hmap->bucket[id];
   /* Find entry in bucket */
   int cmp_val = -1;
@@ -155,7 +155,7 @@ void *hmap_pop(hmap_t *hmap, char *key) {
 /*---------------------------------------------------------------------------*/
 void init_global_hmap(size_t size) {
   if(global_hmap == NULL) {
-    new_hmap(size);
+    global_hmap = new_hmap(size);
   }
 }
 /*---------------------------------------------------------------------------*/
@@ -168,7 +168,7 @@ static void unlink_entry(entry_t *entry) { // Unlink entry from linked list
   }
 }
 /*---------------------------------------------------------------------------*/
-static int hash(char *key) {
+static int strhash(char *key) {
   int len = strlen(key);
   unsigned long int hashval = 0;
   int i = 0;

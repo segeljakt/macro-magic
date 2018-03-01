@@ -2,7 +2,7 @@
 *     File Name           :     multitype.h                                   *
 *     Created By          :     Klas Segeljakt <klasseg@kth.se>               *
 *     Creation Date       :     [2017-11-18 18:18]                            *
-*     Last Modified       :     [2017-11-20 11:36]                            *
+*     Last Modified       :     [2018-01-05 18:19]                            *
 *     Description         :     Heap-based multitype.h                        *
 ******************************************************************************/
 #ifndef MULTITYPE_H
@@ -42,13 +42,13 @@
 /* Return multitype if multiple arguments, return normally if only one */
 
 #define MTR1(...) {                                                           \
-    typedef struct mtr_s {                                                    \
-      TO(__VA_ARGS__)                                                         \
-    } mtr_t;                                                                  \
-    mtr_t *mtr = malloc(sizeof(mtr_t));                                       \
-    *mtr = (mtr_t){__VA_ARGS__};                                              \
-    return mtr;                                                               \
-  }
+  typedef struct mtr_s {                                                    \
+    TO(__VA_ARGS__)                                                         \
+  } mtr_t;                                                                  \
+  mtr_t *mtr = malloc(sizeof(mtr_t));                                       \
+  *mtr = (mtr_t){__VA_ARGS__};                                              \
+  return mtr;                                                               \
+}
 
 #define MTR0(_0) return(_0)
 
@@ -66,16 +66,16 @@ typedef void* multitype;
 
 #define let(...)                                                              \
   for(int mti = 0; !mti;)                                                     \
-    for(multitype mt; mti < 2; mti++)                                         \
-      if(mti) {                                                               \
-        typedef struct mtr_s {                                                \
-          TO(__VA_ARGS__)                                                     \
-        } mtr_t;                                                              \
-        mtr_t mtr = *(mtr_t*)mt;                                              \
-        MTA(__VA_ARGS__)                                                      \
-        free(mt);                                                             \
-      } else                                                                  \
-        mt
+for(multitype mt; mti < 2; mti++)                                         \
+if(mti) {                                                               \
+  typedef struct mtr_s {                                                \
+    TO(__VA_ARGS__)                                                     \
+  } mtr_t;                                                              \
+  mtr_t mtr = *(mtr_t*)mt;                                              \
+  MTA(__VA_ARGS__)                                                      \
+  free(mt);                                                             \
+} else                                                                  \
+mt
 
 /* Return */
 

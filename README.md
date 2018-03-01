@@ -60,17 +60,25 @@ int main(int argc, char *argv[]) {
 
 int main(const int argc, const char *argv[]) {
 
-  hmap_t *hmap = new_hmap(100); // Local hashmap
-  init_global_hmap(100);        // Global hashmap
+  init_global_hmap(100); /* Global hashmap */
+  char *val = NULL;
 
-  char *val = "hello";
-  char *key = "world";
+  // Put
+  hash("key") = "val";
+  // Get
+  val = hash("key");
+  // Pop
+  val = hash("key") = NULL;
+  // Copy
+  hash("key") = "val";
+  hash("newkey") = hash("key");
+  // Move
+  hash("newkey") = hash("key") = NULL;
 
-  put(hmap, key) = val; // Put it in the local hashmap
-  val = get(hmap, key); // Retrieve it from the local hashmap
 
-  put(key) = val;       // Put it in the global hashmap
-  val = get(key);       // Retrieve it from the global hashmap
+
+  hmap_t *hmap = new_hmap(100); /* Local hashmap */
+  hash(hmap, "xxx") = val;
 
   return 0;
 }

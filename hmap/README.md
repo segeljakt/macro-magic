@@ -1,6 +1,6 @@
 # Hmap (Hash map)
 
-This is a hash map implementation which make use of macros to make the API syntax more convenient. Two macros are provided: `put` and `get`. They can be used as in the example below:
+This is a hash map implementation which make use of macros to make the API syntax more convenient. Three macros are provided: `put` and `get` and `hash`. The first two can be used as in the example below. See the example in the project's main README for how to use `hash`:
 
 ```.c
 #include "./hmap.h"
