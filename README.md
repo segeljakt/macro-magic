@@ -1,6 +1,6 @@
 # MacroMagic - Cool C Macros
 
-This is a collection of interesting and useful macros for the C pre-processor. Currently, the following macros are available:
+This is a collection of strange macros for the C pre-processor. Currently, the following macros are available:
 
 # MultiType
 
